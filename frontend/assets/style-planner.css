@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box !important;
+}
+
+body {
+  padding: 1rem;
+}
+
+.outer {
+  overflow-x: scroll;
+}
+
+.plan {
+  width: max-content;
+  display: grid;
+  position: relative;
+}
+
+.plan div {
+  padding: 0.1rem 0.4rem;
+}
+
+.names {
+  display: contents;
+}
+
+.names>div {}
+
+.names>div:nth-child(2n-1) {
+  background: #8883;
+}
+
+.days {
+  display: contents;
+}
+
+.days>div {
+  color: #8888;
+  font-size: 0.5rem;
+}
+
+.days>div:nth-child(5n+2) {
+  background: #8883;
+}
+
+.tasks {
+  display: contents;
+}
+
+.tasks>div {
+  background-color: #e9ab5890;
+  color: #d9480f;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+/****************************************************************************/
+
+.plantable {
+  margin-right: auto;
+  width: max-content;
+}
+
+.plantable tr:first-of-type td {
+  height: 3.5rem;
+  font-family: monospace;
+  overflow: hidden;
+  position: relative;
+}
+
+.plantable tr:first-of-type td::before {
+  content: attr(title);
+  display: block;
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  writing-mode: sideways-lr;
+  text-align: center;
+  margin-left: 0.2rem;
+  font-size: 6px;
+}
+
+.plantable td:not(:first-of-type) {
+  overflow: visible;
+  white-space: nowrap;
+}
+
+.plantable td:first-of-type {
+  max-width: 320px;
+}
+
+
+.plantable td {
+  padding: 0;
+  min-width: var(--day-width);
+  max-width: var(--day-width);
+  height: 1rem;
+}
+
+.plantable td:not(:first-child), .plantable th:not(:first-child) {
+  border-left: 1px solid #8881;
+}
+
+.day-off {
+  background: #f881;
+  color: #f88;
+}
+
+.waypoint {
+  border-left: 0.2rem solid #8888 !important;
+}
+
+.today {
+  border-left: 0.2rem solid #46f8 !important;
+}
+
+.day-work {
+  background-color: #e9ab5890;
+}
+
+tr:hover td.day-work {
+  background-color: #e9ab58;
+}
+
+.day-off-task {
+  background-color: #e9ab5875;
+}
+
+.day {
+  position: relative;
+}
+
+.day:hover::after {
+  /*border: 0.2rem solid #46f8 !important;*/
+  background: #46f8;
+  content: '';
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

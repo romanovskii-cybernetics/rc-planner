@@ -1,0 +1,442 @@
+/* CSS Reset */
+
+/* Box sizing rules */
+*, *::before, *::after { box-sizing: border-box }
+
+/* Remove default padding */
+ul, ol { padding: 0 }
+
+/* Remove default margin */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure,
+figcaption, blockquote, dl, dd, pre { margin: 0 }
+
+/* Make body (and app) like in html 4 */
+body, html, #app { height: 100% }
+
+/* Make images easier to work with */
+img { max-width: 100% }
+
+/* Why does canvas even have focus?.. */
+canvas:focus { outline: none }
+
+/* Inherit fonts for inputs and buttons */
+input, button, textarea, select, .button {
+  font: inherit;
+  color: inherit;
+  min-width: 0;
+}
+
+/* Add the correct vertical alignment in Chrome, Firefox, and Opera */
+progress { vertical-align: baseline }
+
+/* Lighten up the default tabindex outline */
+*:focus { outline-color: rgba(0,0,0,0.2) }
+
+/* Remove animations and transitions for people who prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Generic */
+
+html {
+  --html-background: #fff;
+  --html-color: black;
+  --html-color-pale: #0005;
+  --html-background-reverse: #1f1f1f;
+  --html-color-reverse: #fff;
+  font-family: Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --box-shadow: #0001 0px 0px 1rem;
+  --border-radius: 0.5rem;
+  background: var(--html-background);
+}
+
+html.dark {
+  --html-background: #1f1f1f;
+  --html-color: #fff;
+  --html-color-pale: #fff5;
+  --html-background-reverse: #fff;
+  --html-color-reverse: black;
+  color: white;
+  color-scheme: dark;
+  --box-shadow: #0005 0px 0px 1rem;
+  svg {
+    color: white;
+  }
+}
+
+html.dark.android {
+  --html-background: #1A120F;
+}
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Utility */
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.bar > *:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.form > div,
+.form > span,
+.form > h1,
+.form > h2,
+.form > h3,
+.form > h4,
+.form > h5,
+.form > h6 {
+  text-align: center;
+}
+
+.full-width {
+  min-width: 100%;
+}
+
+.padded {
+  padding: 1rem;
+}
+
+.margined {
+  margin: 1rem;
+}
+
+.bordered {
+  border-radius: var(--border-radius);
+}
+
+.content > * {
+  margin-bottom: 0.5rem;
+}
+
+.box {
+  border: 1px solid #8888;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+}
+
+.hard-center {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  width: max-content;
+  overflow: auto;
+}
+
+/* Dark style */
+
+input, select, textarea, button, .button {
+  background: #8881;
+  border: 1px solid #8888;
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+
+  &:disabled {
+    color: #8885;
+    border-color: #8885;
+  }
+  &:disabled::placeholder {
+    color: #8885;
+  }
+}
+
+/* fixes white background in drop down menu */
+option { background: var(--html-background); }
+
+textarea {
+  resize: vertical;
+}
+
+button, input[type=button], input[type=submit], .button {
+  &:hover, &.hover  { background: #8882 }
+  &:active, &.active { background: #8883 }
+}
+
+a.clear {
+  color: inherit;
+  text-decoration: none;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #fff4;
+  margin: 0;
+}
+
+.field {
+  border: 1px solid #8888;
+  background: #8881;
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+}
+
+.split {
+  display: flex;
+}
+
+.split > .wide {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+
+}
+
+.split > .slim {
+  width: 20rem;
+  overflow: auto;
+  box-shadow: var(--box-shadow);
+  padding: 1rem;
+}
+
+@media (max-width: 40rem) {
+  .split {
+    display: block;
+  }
+  .split > .slim {
+    width: initial;
+  }
+}
+
+.expands {
+  width: 100%;
+  height: 100%;
+}
+
+code, .code {
+  padding: .2rem .4rem;
+  margin: 0;
+  font-size: 85%;
+  white-space: break-spaces;
+  background-color: #afb8c133;
+  border-radius: var(--border-radius);
+}
+
+code + code, .code + .code {
+  margin-left: 0.3rem;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+select {
+  max-width: 100%;
+}
+
+table {
+  border: 1px solid #8888;
+  width: 100%;
+  overflow-wrap: break-word;
+  /*border-radius: var(--border-radius);*/
+  border-spacing: 0;
+  border-collapse: separate;
+  overflow: hidden;
+}
+th {
+  font-weight: normal;
+}
+td, th {
+  overflow-wrap: break-word;
+  text-align: left;
+  padding: 0.5rem;
+}
+td:not(:first-child), th:not(:first-child) {
+  border-left: 1px solid #8888;
+}
+tbody > tr:nth-child(even) {
+  background: #8881;
+}
+thead > tr {
+  background: #8883;
+}
+tbody > tr:hover {
+  background: #8882;
+}
+
+@keyframes progress-keyframes {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.progress {
+  position: relative;
+  min-height: 0.2rem;
+  overflow: hidden;
+  background: #8881;
+  border-radius: var(--border-radius);
+  width: 100%;
+  text-align: center;
+  &:before {
+    z-index: -1;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    /*background: #8888;*/
+    background: #0075FF;
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: -100%;
+    animation: progress-keyframes 5s linear infinite;
+    /*animation-delay: 2s;*/
+  }
+}
+
+.progress-on-button {
+  position: relative;
+  min-height: 0.2rem;
+  overflow: hidden;
+  background: #8881;
+  border-radius: var(--border-radius);
+  text-align: center;
+  &:before {
+    z-index: -1;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    /*background: #8888;*/
+    background: #0075FF;
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: -100%;
+    animation: progress-keyframes 5s linear infinite;
+    /*animation-delay: 2s;*/
+  }
+}
+
+.progress-on-button-fixed {
+  position: relative;
+  min-height: 0.2rem;
+  overflow: hidden;
+  background: #8881;
+  border-radius: var(--border-radius);
+  text-align: center;
+  &:before {
+    z-index: -1;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    /*background: #8888;*/
+    background: #0075FF;
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: var(--progress);
+    left: 0;
+  }
+}
+
+.progress-on-button:disabled, .progress-on-button-fixed:disabled {
+  color: var(--html-color-pale);
+}
+
+.number {
+  text-align: right;
+}
+
+.margin-center {
+  margin: 0 auto;
+  display: block;
+}
+
+.spacer {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/*
+main > section {
+  max-width: 960px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: start;
+  flex-direction: column;
+}
+
+@media (max-width: 40rem) {
+  main > section > * {
+    flex: 1;
+  }
+}
+*/
+
+.nowrap {
+  white-space: nowrap;
+}
+
+main > section {
+  max-width: 1200px;
+  &>*:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.error       { background: #FFC7CE; color: #9C0006; }
+.warning     { background: #FFEB9C; color: #9C5700; }
+.success     { background: #C6EFCE; color: #006100; }
+.information { background: #cfe2ff; color: #174283; }
+.error-override       { background: #FFC7CE !important; color: #9C0006 !important; }
+.warning-override     { background: #FFEB9C !important; color: #9C5700 !important; }
+.success-override     { background: #C6EFCE !important; color: #006100 !important; }
+.information-override { background: #cfe2ff !important; color: #174283 !important; }
+
+.error-bg       { background: #FFC7CE; }
+.warning-bg     { background: #FFEB9C; }
+.success-bg     { background: #C6EFCE; }
+.information-bg { background: #cfe2ff; }
+
+.pale { color: #888a; }
+
+.translation-error {
+  background: red;
+  color: yellow;
+  font-weight: 900;
+}
+
+.translation-error::before {
+  content: '⚠️ ';
+}
+.translation-error::after {
+  content: ' ⚠️';
+}
