@@ -2,4 +2,4 @@
 
 cd "$(dirname "$BASH_SOURCE")"
 
-./build-run
+./build-run.sh
